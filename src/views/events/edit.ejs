@@ -1,0 +1,40 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container mt-4">
+    <h1>Edit Event</h1>
+    
+    <!-- Check if there are flash messages -->
+    <% if (locals.successMsg) { %>
+        <div class="alert alert-success">
+            <%= locals.successMsg %>
+        </div>
+    <% } %>
+
+    <% if (locals.errorMsg) { %>
+        <div class="alert alert-danger">
+            <%= locals.errorMsg %>
+        </div>
+    <% } %>
+
+    <form action="/events/<%= event._id %>?_method=PUT" method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Event Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="<%= event.name %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Event Date</label>
+            <input type="date" name="date" id="date" class="form-control" value="<%= event.date.toISOString().split('T')[0] %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="location" id="location" class="form-control" value="<%= event.location %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="4" required><%= event.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Event</button>
+    </form>
+
+    <a href="/events/<%= event._id %>" class="btn btn-secondary">Cancel</a>
+</div>

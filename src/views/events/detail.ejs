@@ -1,0 +1,19 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container mt-4">
+    <h1><%= event.name %></h1>
+    <p><strong>Date:</strong> <%= event.date.toDateString() %></p>
+    <p><strong>Location:</strong> <%= event.location %></p>
+    <p><strong>Description:</strong> <%= event.description %></p>
+    <% if (event.weather) { %>
+        <p><strong>Weather:</strong> Temperature: <%= event.weather.temp %>°C, Humidity: <%= event.weather.humidity %>%</p>
+    <% } %>
+  
+
+    <form action="/events/<%= event._id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Delete Event</button>
+    </form>
+    <a href="/events/<%= event._id %>/edit" class="btn btn-warning">Update Event</a>
+
+    <a href="/events" class="btn btn-primary">Back to Events</a>
+</div>

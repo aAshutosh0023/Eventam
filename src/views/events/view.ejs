@@ -1,0 +1,18 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container mt-4">
+    <h1 class="mb-4">All Events</h1>
+
+    <% if (events.length > 0) { %>
+        <ul class="list-group">
+            <% events.forEach(event => { %>
+                <li class="list-group-item">
+                    <a href="/events/<%= event._id %>"><h3><%= event.name %></h3></a>
+                    <p><strong>Date:</strong> <%= event.date.toDateString() %></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No events available.</p>
+    <% } %>
+</div>
