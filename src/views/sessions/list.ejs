@@ -1,0 +1,25 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container mt-4">
+    <h1>Sessions</h1>
+    <table class="table">
+        <thead>
+            <tr>
+               
+                <th>IP Address</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% sessions.forEach(session => { %>
+                <tr>
+                   
+                    <td><%= session.ipAddress %></td>
+                    <td><%= session.loginTime ? session.loginTime.toLocaleString() : 'N/A' %></td>
+                    <td><%= session.logoutTime ? session.logoutTime.toLocaleString() : 'N/A' %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
